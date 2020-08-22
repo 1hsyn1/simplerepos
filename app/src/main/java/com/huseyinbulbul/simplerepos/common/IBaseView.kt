@@ -17,6 +17,8 @@ interface IBaseView {
     fun setLeftIcon(id: Int)
     fun setOnRightIconClicked(listener: View.OnClickListener)
     fun openActivity(cls: Class<*>)
+    fun showMessage(message: String)
+    fun showMessage(message: Int)
     fun close()
     fun hideKeyboard()
     fun isOnScreen(): Boolean

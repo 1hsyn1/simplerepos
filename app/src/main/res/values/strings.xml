@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Simple Repos</string>
+    <string name="invalid_username">Please enter a valid username!</string>
+    <string name="issues">Issues</string>
+    <string name="ok">Okey</string>
     <string name="user_hint">Enter a Username</string>
     <string name="submit">Submit</string>
     <string name="stars">Stars</string>
-    <string name="issues">Issues</string>
 </resources>

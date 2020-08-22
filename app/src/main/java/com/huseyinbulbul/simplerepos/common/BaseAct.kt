@@ -1,6 +1,8 @@
 package com.huseyinbulbul.simplerepos.common
 
 import android.app.Activity
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
@@ -116,6 +118,30 @@ open class BaseAct : AppCompatActivity(), IBaseView {
             return
 
         finish()
+    }
+
+    override fun showMessage(message: String) {
+        AlertDialog.Builder(this)
+            .setMessage(message)
+            .setPositiveButton(R.string.ok
+            ) { dialog, which ->
+                dialog?.let {
+                    it.dismiss()
+                }
+            }
+            .show()
+    }
+
+    override fun showMessage(message: Int) {
+        AlertDialog.Builder(this)
+            .setMessage(getString(message))
+            .setPositiveButton(R.string.ok
+            ) { dialog, which ->
+                dialog?.let {
+                    it.dismiss()
+                }
+            }
+            .show()
     }
 
     override fun hideKeyboard() {
