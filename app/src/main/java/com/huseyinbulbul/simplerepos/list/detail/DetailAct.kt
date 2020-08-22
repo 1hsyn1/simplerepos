@@ -5,8 +5,10 @@ import android.os.Bundle
 import com.huseyinbulbul.simplerepos.R
 import com.huseyinbulbul.simplerepos.common.BaseAct
 import com.huseyinbulbul.simplerepos.common.DataManager
+import com.huseyinbulbul.simplerepos.common.FavouriteManager
 import com.huseyinbulbul.simplerepos.common.model.Repository
 import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.activity_base.*
 import kotlinx.android.synthetic.main.activity_detail.*
 
 class DetailAct : BaseAct(), IDetailView {
@@ -15,7 +17,11 @@ class DetailAct : BaseAct(), IDetailView {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
-        presenter = DetailPresenter(this, DataManager.getInstance())
+        presenter = DetailPresenter(this, DataManager.getInstance(), FavouriteManager.getInstance())
+
+        iv_right_icon.setOnClickListener {
+            presenter.favouriteSelected()
+        }
 
         presenter.viewReady()
     }
@@ -41,6 +47,14 @@ class DetailAct : BaseAct(), IDetailView {
 
         repo.open_issues_count?.let {
             tv_issue_count.text = "$it"
+        }
+
+        repo.id?.let {
+            if(FavouriteManager.getInstance().isFavourite("$it")){
+                iv_right_icon.setImageDrawable(getDrawable(R.drawable.ic_star_filled))
+            }else {
+                iv_right_icon.setImageDrawable(getDrawable(R.drawable.ic_star))
+            }
         }
     }
 }

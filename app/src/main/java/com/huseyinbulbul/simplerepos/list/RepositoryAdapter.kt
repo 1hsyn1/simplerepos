@@ -4,6 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.huseyinbulbul.simplerepos.R
+import com.huseyinbulbul.simplerepos.common.FavouriteManager
 import com.huseyinbulbul.simplerepos.common.inflate
 import com.huseyinbulbul.simplerepos.common.model.Repository
 import com.squareup.picasso.Picasso
@@ -29,6 +30,14 @@ class RepositoryAdapter(private val list: List<Repository>,
                 tv_name.setOnClickListener {_ ->
                     repoSelectedListener?.let { listener ->
                         listener(it)
+                    }
+                }
+
+                it.id?.let {id ->
+                    if(FavouriteManager.getInstance().isFavourite("$id")){
+                        iv_star.visibility = View.VISIBLE
+                    }else {
+                        iv_star.visibility = View.GONE
                     }
                 }
             }

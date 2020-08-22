@@ -2,8 +2,11 @@ package com.huseyinbulbul.simplerepos.list.detail
 
 import com.huseyinbulbul.simplerepos.R
 import com.huseyinbulbul.simplerepos.common.DataManager
+import com.huseyinbulbul.simplerepos.common.FavouriteManager
 
-class DetailPresenter(private val view: IDetailView, private val manager: DataManager) {
+class DetailPresenter(private val view: IDetailView,
+                      private val manager: DataManager,
+                      private val favouriteManager: FavouriteManager) {
 
     fun viewReady(){
         manager.getSelectedRepository()?.let {
@@ -15,6 +18,19 @@ class DetailPresenter(private val view: IDetailView, private val manager: DataMa
             view.showRepo(it)
         } ?: run {
             view.close()
+        }
+    }
+
+    fun favouriteSelected(){
+        manager.getSelectedRepository()?.id?.toString()?.let {
+            if(favouriteManager.isFavourite(it)){
+                favouriteManager.removeFavourite(it)
+            }else {
+                favouriteManager.addFavourite(it)
+            }
+            manager.getSelectedRepository()?.let {repo ->
+                view.showRepo(repo)
+            }
         }
     }
 }
