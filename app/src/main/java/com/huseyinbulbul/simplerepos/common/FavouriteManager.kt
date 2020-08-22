@@ -38,10 +38,10 @@ class FavouriteManager(private var sharedPreferences: SharedPreferences) {
         favourites.forEachIndexed { index, s ->
             if(s == id){
                 favourites.removeAt(index)
-                return@forEachIndexed
+                refreshShared()
+                return
             }
         }
-        refreshShared()
     }
 
     fun isFavourite(id: String): Boolean{
