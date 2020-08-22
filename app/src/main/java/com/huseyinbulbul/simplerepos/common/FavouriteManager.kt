@@ -5,7 +5,7 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import java.lang.Exception
 
-class FavouriteManager(context: Context) {
+class FavouriteManager(private var sharedPreferences: SharedPreferences) {
     companion object{
         private var instance: FavouriteManager? = null
         private val SHARED_KEY = "favourites"
@@ -17,12 +17,11 @@ class FavouriteManager(context: Context) {
             return instance as FavouriteManager
         }
 
-        fun init(context: Context){
-            instance = FavouriteManager(context)
+        fun init(sharedPreferences: SharedPreferences){
+            instance = FavouriteManager(sharedPreferences)
         }
     }
 
-    var sharedPreferences: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
     var favourites = mutableListOf<String>()
 
     init {
@@ -57,9 +56,11 @@ class FavouriteManager(context: Context) {
     private fun refreshShared(){
         var str = ""
         favourites.forEachIndexed { index, s ->
-            str += s
-            if(index != favourites.size){
-                str += ","
+            if(s.trim().isNotEmpty()) {
+                str += s
+                if (index != favourites.size) {
+                    str += ","
+                }
             }
         }
         sharedPreferences.edit().putString(SHARED_KEY, str).apply()

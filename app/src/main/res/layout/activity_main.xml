@@ -23,6 +23,7 @@
         app:layout_constraintStart_toEndOf="@+id/et_user"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:backgroundTint="@color/colorAccent"
         android:text="@string/submit"/>
 
     <androidx.recyclerview.widget.RecyclerView
