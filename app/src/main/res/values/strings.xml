@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Simple Repos</string>
+    <string name="user_hint">Enter a Username</string>
+    <string name="submit">Submit</string>
+    <string name="stars">Stars</string>
+    <string name="issues">Issues</string>
 </resources>
