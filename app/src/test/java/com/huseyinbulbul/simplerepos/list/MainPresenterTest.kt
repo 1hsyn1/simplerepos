@@ -4,7 +4,6 @@ import com.huseyinbulbul.simplerepos.R
 import com.huseyinbulbul.simplerepos.common.DataManager
 import com.huseyinbulbul.simplerepos.common.model.Repository
 import com.huseyinbulbul.simplerepos.list.detail.DetailAct
-import io.mockk.Called
 import io.mockk.mockk
 import io.mockk.spyk
 import io.mockk.verify
